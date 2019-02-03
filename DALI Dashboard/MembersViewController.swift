@@ -8,9 +8,17 @@
 
 import UIKit
 
+class MembersTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var memberNameLabel: UILabel!
+    @IBOutlet weak var memberMessageLabel: UILabel!
+    @IBOutlet weak var memberImageLabel: UIImageView!
+    
+}
+
 class MembersViewController: UITableViewController {
 
-    let memberList = ["John", "Juan", "Tim"]
+    let memberList = ["John", "Juan", "Tim", "Lillian", "Yakoob", "Abhimanyu"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +33,10 @@ class MembersViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "member", for: indexPath)
-        cell.textLabel?.text = memberList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "member", for: indexPath) as! MembersTableViewCell
+        
+        cell.memberNameLabel?.text = memberList[indexPath.row]
+        cell.memberMessageLabel?.text = "What's poppin, this is what I'm all about. I love to code and stuff."
         
         return cell
     }
