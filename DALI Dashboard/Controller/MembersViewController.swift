@@ -92,7 +92,7 @@ class MembersViewController: UITableViewController {
                 newMember.website = "\(URL_PREFIX)\(website)"
             }
             else {
-                newMember.website = "\(website.suffix(2))"
+                newMember.website = "http:\(website)"
             }
             
             for (_, term) in memberData["terms_on"] {

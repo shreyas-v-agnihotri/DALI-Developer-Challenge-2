@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class MemberDetailViewController: UIViewController {
     
@@ -15,6 +16,8 @@ class MemberDetailViewController: UIViewController {
     @IBOutlet weak var memberTermsLabel: UILabel!
     @IBOutlet weak var memberProjectsLabel: UILabel!
     @IBOutlet weak var memberMessageLabel: UILabel!
+
+    
     
     
     var member = Member()
@@ -27,11 +30,24 @@ class MemberDetailViewController: UIViewController {
         
         let convertedURL = URL(string: member.imageURL)
         memberImageView.kf.setImage(with: convertedURL)
-        memberImageView.layer.cornerRadius = memberImageView.frame.height / 2
-        memberImageView.clipsToBounds = true
+        memberImageView.layer.masksToBounds = true
+        memberImageView.layer.borderWidth = 7
+        memberImageView.layer.borderColor = UIColor(red:0.25, green:0.67, blue:0.80, alpha:1.0).cgColor
+        memberImageView.layer.cornerRadius = memberImageView.bounds.width/2
         
         memberTermsLabel.text = arrayToString(list: member.termsOn)
         memberProjectsLabel.text = arrayToString(list: member.projects)
+        
+        
+    }
+    
+    @IBAction func memberWebsiteButton(_ sender: UIButton) {
+        
+        let siteURL = URL(string: member.website)
+        print(member.website)
+        let safari = SFSafariViewController(url: siteURL!)
+        present(safari, animated: true, completion: nil)
+        //UIApplication.shared.open(siteURL!)
         
     }
     
@@ -39,7 +55,6 @@ class MemberDetailViewController: UIViewController {
         var workingString = ""
         
         if list.isEmpty {
-            print("list is empty")
             workingString = "None :("
         }
         else {
