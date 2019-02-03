@@ -8,6 +8,7 @@ target 'DALI Dashboard' do
   # Pods for DALI Dashboard
     pod 'Alamofire'
     pod 'SwiftyJSON'
-    pod 'SCLAlertView-Objective-C'
     pod 'Kingfisher'
+    pod 'DZNEmptyDataSet'
+    pod 'SCLAlertView'
 end

@@ -9,8 +9,9 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import SCLAlertView_Objective_C
 import Kingfisher
+import DZNEmptyDataSet
+import SCLAlertView
 
 class MembersTableViewCell: UITableViewCell {
     
@@ -20,7 +21,7 @@ class MembersTableViewCell: UITableViewCell {
     
 }
 
-class MembersViewController: UITableViewController {
+class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     let DATA_URL = "https://raw.githubusercontent.com/dali-lab/mappy/gh-pages/members.json"
     let URL_PREFIX = "https://raw.githubusercontent.com/dali-lab/mappy/gh-pages/"
@@ -29,10 +30,25 @@ class MembersViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        tableView.emptyDataSetSource = self as DZNEmptyDataSetSource
+        tableView.emptyDataSetDelegate = self as DZNEmptyDataSetDelegate
+
         getMemberData(url: DATA_URL)
         
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "Loading DALI Lab Members..."
+        let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    
 
     //MARK: TableView Methods
     
@@ -49,9 +65,22 @@ class MembersViewController: UITableViewController {
         
         let convertedURL = URL(string: memberList[indexPath.row].imageURL)
         cell.memberImageView.kf.setImage(with: convertedURL)
+//
+//        if !memberList[indexPath.row].display {
+//            cell.isHidden = true
+//        }
         
         return cell
     }
+    
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//
+//        if !memberList[indexPath.row].display {
+//            return 0
+//        }
+//        return 100
+//
+//    }
     
     
     
@@ -59,20 +88,20 @@ class MembersViewController: UITableViewController {
     
     func getMemberData(url: String) {
         
-        Alamofire.request(url).responseJSON {
-            response in
+        Alamofire.request(url).responseJSON { response in
             
             if response.result.isSuccess {
                 
                 let membersJSON: JSON = JSON(response.result.value!)
                 self.updateMembersDisplay(json: membersJSON)
+                SCLAlertView().showSuccess("Awesome!", subTitle: "All the data loaded up.")
 
-                //let alert = SCLAlertView()
-                //alert.showSuccess("Got the JSON!", subTitle: "Acquired DALI member data", closeButtonTitle: "Done", duration: 10.0)
             }
             
             else {
                 //Display error
+                SCLAlertView().showError("Oops!", subTitle: "Looks like there was an error fetching the data. Please try again another time.")
+
             }
         }
         
@@ -85,7 +114,9 @@ class MembersViewController: UITableViewController {
             
             newMember.name = memberData["name"].stringValue
             newMember.message = memberData["message"].stringValue
-            newMember.imageURL = "\(URL_PREFIX)\(memberData["iconUrl"].stringValue)"
+            
+            let noSpaceURL = memberData["iconUrl"].stringValue.replacingOccurrences(of: " ", with: "%20")
+            newMember.imageURL = "\(URL_PREFIX)\(noSpaceURL)"
             
             let website = memberData["url"].stringValue
             if (!website.hasPrefix("//")) {
@@ -103,10 +134,10 @@ class MembersViewController: UITableViewController {
                 newMember.projects.append(project.stringValue)
             }
             
-            self.memberList.append(newMember)
+            memberList.append(newMember)
         }
         
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
 
     
@@ -129,3 +160,19 @@ class MembersViewController: UITableViewController {
     }
 }
 
+//extension MembersViewController: UISearchBarDelegate {
+//
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//
+//        for member in memberList {
+//            if member.name.contains(searchBar.text!) {
+//                member.display = true
+//            }
+//            member.display = false
+//        }
+//
+//        tableView.reloadData()
+//
+//    }
+//
+//}

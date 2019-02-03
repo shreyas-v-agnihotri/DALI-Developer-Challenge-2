@@ -16,6 +16,5 @@ class Member {
     var message: String = ""
     var termsOn = [String]()
     var projects = [String]()
-
     
 }
