@@ -98,7 +98,6 @@ class MembersViewController: UITableViewController {
             newMember.message = memberData["message"].stringValue
             newMember.website = memberData["url"].stringValue
             newMember.imageURL = "\(IMAGE_URL_PREFIX)\(memberData["iconUrl"].stringValue)"
-            print(newMember.imageURL)
             
             for (_, term) in memberData["terms_on"] {
                 newMember.termsOn.append(term.stringValue)

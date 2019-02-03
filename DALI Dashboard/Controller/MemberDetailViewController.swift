@@ -16,11 +16,12 @@ class MemberDetailViewController: UIViewController, MemberDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print(member.name)
     }
     
     func showMemberDetail(selectedMember: Member) {
         member = selectedMember
+        print(member.name)
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
