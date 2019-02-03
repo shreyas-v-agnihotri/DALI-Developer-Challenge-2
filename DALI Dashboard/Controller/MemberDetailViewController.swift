@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemberDetailViewController: UIViewController, MemberDelegate {
+class MemberDetailViewController: UIViewController {
     
     var member = Member()
 
@@ -16,23 +16,9 @@ class MemberDetailViewController: UIViewController, MemberDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-    
-    func showMemberDetail(selectedMember: Member) {
-        member = selectedMember
         print(member.name)
-
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "goToMemberDetail" {
-            
-            let destinationViewController = segue.destination as! MembersViewController
-            destinationViewController.delegate = self
-            
-        }
-        
-    }
+
 
 }

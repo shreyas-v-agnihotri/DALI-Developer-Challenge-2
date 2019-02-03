@@ -12,10 +12,6 @@ import SwiftyJSON
 import SCLAlertView_Objective_C
 import Kingfisher
 
-protocol MemberDelegate {
-    func showMemberDetail (selectedMember: Member)
-}
-
 class MembersTableViewCell: UITableViewCell {
     
     @IBOutlet weak var memberNameLabel: UILabel!
@@ -26,11 +22,10 @@ class MembersTableViewCell: UITableViewCell {
 
 class MembersViewController: UITableViewController {
     
-    var delegate: MemberDelegate?
-    
     let DATA_URL = "https://raw.githubusercontent.com/dali-lab/mappy/gh-pages/members.json"
     let IMAGE_URL_PREFIX = "https://raw.githubusercontent.com/dali-lab/mappy/gh-pages/"
     var memberList = [Member]()
+    var selectedMember = Member()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,12 +53,6 @@ class MembersViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        delegate?.showMemberDetail(selectedMember: memberList[indexPath.row])
-        self.performSegue(withIdentifier: "goToMemberDetail", sender: self)
-        
-    }
     
     
     //MARK: Networking
@@ -114,5 +103,22 @@ class MembersViewController: UITableViewController {
     }
 
     
+    
+    //MARK: Change Views
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        selectedMember = memberList[indexPath.row]
+        self.performSegue(withIdentifier: "goToMemberDetail", sender: self)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if(segue.identifier == "goToMemberDetail") {
+            let memberDetail = segue.destination as! MemberDetailViewController
+            memberDetail.member = selectedMember
+        }
+    }
 }
 
