@@ -23,7 +23,7 @@ class MembersTableViewCell: UITableViewCell {
 class MembersViewController: UITableViewController {
     
     let DATA_URL = "https://raw.githubusercontent.com/dali-lab/mappy/gh-pages/members.json"
-    let IMAGE_URL_PREFIX = "https://raw.githubusercontent.com/dali-lab/mappy/gh-pages/"
+    let URL_PREFIX = "https://raw.githubusercontent.com/dali-lab/mappy/gh-pages/"
     var memberList = [Member]()
     var selectedMember = Member()
 
@@ -85,8 +85,15 @@ class MembersViewController: UITableViewController {
             
             newMember.name = memberData["name"].stringValue
             newMember.message = memberData["message"].stringValue
-            newMember.website = memberData["url"].stringValue
-            newMember.imageURL = "\(IMAGE_URL_PREFIX)\(memberData["iconUrl"].stringValue)"
+            newMember.imageURL = "\(URL_PREFIX)\(memberData["iconUrl"].stringValue)"
+            
+            let website = memberData["url"].stringValue
+            if (!website.hasPrefix("//")) {
+                newMember.website = "\(URL_PREFIX)\(website)"
+            }
+            else {
+                newMember.website = "\(website.suffix(2))"
+            }
             
             for (_, term) in memberData["terms_on"] {
                 newMember.termsOn.append(term.stringValue)
