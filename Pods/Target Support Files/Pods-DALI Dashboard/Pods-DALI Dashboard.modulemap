@@ -1,0 +1,6 @@
+framework module Pods_DALI_Dashboard {
+  umbrella header "Pods-DALI Dashboard-umbrella.h"
+
+  export *
+  module * { export * }
+}

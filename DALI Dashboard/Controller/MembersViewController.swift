@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import SCLAlertView_Objective_C
 
 class MembersTableViewCell: UITableViewCell {
     
@@ -17,16 +20,20 @@ class MembersTableViewCell: UITableViewCell {
 }
 
 class MembersViewController: UITableViewController {
+    
+    let DATA_URL = "https://raw.githubusercontent.com/dali-lab/mappy/gh-pages/members.json"
 
-    let memberList = ["John", "Juan", "Tim", "Lillian", "Yakoob", "Abhimanyu"]
+    let memberList = ["John"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        getMemberData(url: DATA_URL)
         
     }
 
-    //MARK - TableView data source methods
+    //MARK: TableView Data Source Methods
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return memberList.count
     }
@@ -41,6 +48,34 @@ class MembersViewController: UITableViewController {
         return cell
     }
     
+    //MARK: Networking
+    
+    func getMemberData(url: String) {
+        
+        Alamofire.request(url).responseJSON {
+            response in
+            
+            if response.result.isSuccess {
+                
+                let membersJSON: JSON = JSON(response.result.value!)
+                let alert = SCLAlertView()
+                alert.showSuccess("Got the JSON!", subTitle: "Acquired DALI member data", closeButtonTitle: "Done", duration: 10.0)
+                //print(membersJSON)
+                //self.updateMembersList(json: membersJSON)
+            }
+            
+            else {
+                //Display error
+            }
+        }
+        
+    }
+    
+    func updateMembersList(json: JSON) {
+        
+        
+        
+    }
     
 }
 
