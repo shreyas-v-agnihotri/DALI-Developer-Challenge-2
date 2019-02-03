@@ -14,6 +14,7 @@
 		B116772B22065262000657D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B116772A22065262000657D4 /* Assets.xcassets */; };
 		B116772E22065262000657D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B116772C22065262000657D4 /* LaunchScreen.storyboard */; };
 		B116773F22069F32000657D4 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = B116773E22069F32000657D4 /* Member.swift */; };
+		B1329E1E2206B31B00C24A07 /* MemberDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1329E1D2206B31B00C24A07 /* MemberDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B116772D22065262000657D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B116772F22065262000657D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B116773E22069F32000657D4 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		B1329E1D2206B31B00C24A07 /* MemberDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetailViewController.swift; sourceTree = "<group>"; };
 		B15641CF289A98ABCEA19A4D /* Pods_DALI_Dashboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DALI_Dashboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E5EB31A026B913275AE907 /* Pods-DALI Dashboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DALI Dashboard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DALI Dashboard/Pods-DALI Dashboard.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,6 +104,7 @@
 			children = (
 				B11677252206525E000657D4 /* MembersViewController.swift */,
 				B11677232206525E000657D4 /* AppDelegate.swift */,
+				B1329E1D2206B31B00C24A07 /* MemberDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DALI Dashboard/Pods-DALI Dashboard-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/SCLAlertView-Objective-C/SCLAlertView_Objective_C.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -224,6 +228,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView_Objective_C.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -241,6 +246,7 @@
 			files = (
 				B11677262206525E000657D4 /* MembersViewController.swift in Sources */,
 				B116773F22069F32000657D4 /* Member.swift in Sources */,
+				B1329E1E2206B31B00C24A07 /* MemberDetailViewController.swift in Sources */,
 				B11677242206525E000657D4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

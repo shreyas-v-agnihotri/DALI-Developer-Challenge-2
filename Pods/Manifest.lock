@@ -1,24 +1,28 @@
 PODS:
   - Alamofire (4.8.0)
+  - Kingfisher (4.10.1)
   - SCLAlertView-Objective-C (1.1.6)
   - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
   - Alamofire
+  - Kingfisher
   - SCLAlertView-Objective-C
   - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Kingfisher
     - SCLAlertView-Objective-C
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   SCLAlertView-Objective-C: 2bb9be204bffaf24762a0e33fe6ca9645819b3b7
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 681b6cca8463e158a73bbea5c946c24b59beac55
+PODFILE CHECKSUM: 437fe53520a675d7adac5de86358f5647eb466fa
 
 COCOAPODS: 1.5.3

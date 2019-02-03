@@ -97,7 +97,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="memberImageLabel" destination="KJ7-FI-3l0" id="mq7-re-SEU"/>
+                                    <outlet property="memberImageView" destination="KJ7-FI-3l0" id="Yyb-N2-gTC"/>
                                     <outlet property="memberMessageLabel" destination="qW7-aD-v9r" id="1Vg-OS-kcM"/>
                                     <outlet property="memberNameLabel" destination="xoz-tj-uzk" id="cwa-og-ry1"/>
                                 </connections>

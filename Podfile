@@ -9,5 +9,5 @@ target 'DALI Dashboard' do
     pod 'Alamofire'
     pod 'SwiftyJSON'
     pod 'SCLAlertView-Objective-C'
-
+    pod 'Kingfisher'
 end
