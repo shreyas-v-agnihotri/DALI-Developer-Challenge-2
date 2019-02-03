@@ -136,7 +136,7 @@
         <scene sceneID="Hbs-ad-uD5">
             <objects>
                 <tableViewController id="FXh-oo-k41" customClass="MembersViewController" customModule="DALI_Dashboard" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jUe-TG-e98">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jUe-TG-e98">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -153,24 +153,24 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7ir-K8-TZg" id="e1N-VC-5jU">
-                                    <rect key="frame" x="0.0" y="0.0" width="341" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KJ7-FI-3l0" userLabel="Profile Pic">
-                                            <rect key="frame" x="15" y="10" width="79.5" height="79.5"/>
+                                            <rect key="frame" x="15" y="10" width="80" height="80"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="79.5" id="MAv-CS-vN9"/>
-                                                <constraint firstAttribute="width" constant="79.5" id="dAu-8Z-iIe"/>
+                                                <constraint firstAttribute="height" constant="80" id="MAv-CS-vN9"/>
+                                                <constraint firstAttribute="width" constant="80" id="dAu-8Z-iIe"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qW7-aD-v9r" userLabel="Message">
-                                            <rect key="frame" x="109.5" y="44" width="223.5" height="20.5"/>
+                                            <rect key="frame" x="110" y="44" width="223" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xoz-tj-uzk" userLabel="Name">
-                                            <rect key="frame" x="109.5" y="12.5" width="223.5" height="24"/>
+                                            <rect key="frame" x="110" y="12.5" width="223" height="24"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -200,7 +200,9 @@
                             <outlet property="delegate" destination="FXh-oo-k41" id="5tv-I2-gPE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Members" id="EIe-Xp-a47"/>
+                    <navigationItem key="navigationItem" title="Members" id="EIe-Xp-a47">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="a7W-By-vSl"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="AJx-UD-vV7" kind="show" identifier="goToMemberDetail" id="YlS-uc-vvg"/>
                     </connections>

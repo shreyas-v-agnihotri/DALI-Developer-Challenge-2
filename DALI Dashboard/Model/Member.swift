@@ -17,4 +17,11 @@ class Member {
     var termsOn = [String]()
     var projects = [String]()
     
+    func contains(query: String) -> Bool {
+        return name.contains(query) ||
+               message.contains(query) ||
+               termsOn.contains(query) ||
+               projects.contains(query)
+    }
+    
 }

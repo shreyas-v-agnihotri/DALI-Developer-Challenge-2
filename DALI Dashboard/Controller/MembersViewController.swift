@@ -21,19 +21,21 @@ class MembersTableViewCell: UITableViewCell {
     
 }
 
-class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class MembersViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     let DATA_URL = "https://raw.githubusercontent.com/dali-lab/mappy/gh-pages/members.json"
     let URL_PREFIX = "https://raw.githubusercontent.com/dali-lab/mappy/gh-pages/"
     var memberList = [Member]()
+    var filteredList = [Member]()
+    var displayList = [Member]()
     var selectedMember = Member()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.emptyDataSetSource = self as DZNEmptyDataSetSource
         tableView.emptyDataSetDelegate = self as DZNEmptyDataSetDelegate
-
+        
         getMemberData(url: DATA_URL)
         
     }
@@ -43,7 +45,7 @@ class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmpt
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "Loading DALI Lab Members..."
+        let str = "No DALI Lab Members to show at this time!"
         let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
@@ -53,37 +55,26 @@ class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmpt
     //MARK: TableView Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return memberList.count
+        
+        return displayList.count
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "member", for: indexPath) as! MembersTableViewCell
         
-        cell.memberNameLabel?.text = memberList[indexPath.row].name
-        cell.memberMessageLabel?.text = memberList[indexPath.row].message
         
-        let convertedURL = URL(string: memberList[indexPath.row].imageURL)
+        cell.memberNameLabel?.text = displayList[indexPath.row].name
+        cell.memberMessageLabel?.text = displayList[indexPath.row].message
+        
+        let convertedURL = URL(string: displayList[indexPath.row].imageURL)
         cell.memberImageView.kf.setImage(with: convertedURL)
-//
-//        if !memberList[indexPath.row].display {
-//            cell.isHidden = true
-//        }
         
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//
-//        if !memberList[indexPath.row].display {
-//            return 0
-//        }
-//        return 100
-//
-//    }
-    
-    
-    
+
     //MARK: Networking
     
     func getMemberData(url: String) {
@@ -93,8 +84,8 @@ class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmpt
             if response.result.isSuccess {
                 
                 let membersJSON: JSON = JSON(response.result.value!)
-                self.updateMembersDisplay(json: membersJSON)
-                SCLAlertView().showSuccess("Awesome!", subTitle: "All the data loaded up.")
+                self.populateMembersDisplay(json: membersJSON)
+                //SCLAlertView().showSuccess("Awesome!", subTitle: "All the data loaded up.")
 
             }
             
@@ -107,7 +98,7 @@ class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmpt
         
     }
     
-    func updateMembersDisplay(json: JSON) {
+    func populateMembersDisplay(json: JSON) {
         
         for (_, memberData) in json {
             let newMember = Member()
@@ -115,15 +106,15 @@ class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmpt
             newMember.name = memberData["name"].stringValue
             newMember.message = memberData["message"].stringValue
             
-            let noSpaceURL = memberData["iconUrl"].stringValue.replacingOccurrences(of: " ", with: "%20")
-            newMember.imageURL = "\(URL_PREFIX)\(noSpaceURL)"
+            let noSpaceImageURL = memberData["iconUrl"].stringValue.replacingOccurrences(of: " ", with: "%20")
+            newMember.imageURL = "\(URL_PREFIX)\(noSpaceImageURL)"
             
-            let website = memberData["url"].stringValue
-            if (!website.hasPrefix("//")) {
-                newMember.website = "\(URL_PREFIX)\(website)"
+            let noSpaceWebsiteURL = memberData["url"].stringValue.replacingOccurrences(of: " ", with: "%20")
+            if (!noSpaceWebsiteURL.hasPrefix("//")) {
+                newMember.website = "\(URL_PREFIX)\(noSpaceWebsiteURL)"
             }
             else {
-                newMember.website = "http:\(website)"
+                newMember.website = "http:\(noSpaceWebsiteURL)"
             }
             
             for (_, term) in memberData["terms_on"] {
@@ -137,6 +128,7 @@ class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmpt
             memberList.append(newMember)
         }
         
+        displayList = memberList
         tableView.reloadData()
     }
 
@@ -146,7 +138,7 @@ class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmpt
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        selectedMember = memberList[indexPath.row]
+        selectedMember = displayList[indexPath.row]
         self.performSegue(withIdentifier: "goToMemberDetail", sender: self)
         
     }
@@ -160,19 +152,32 @@ class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmpt
     }
 }
 
-//extension MembersViewController: UISearchBarDelegate {
-//
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//
-//        for member in memberList {
-//            if member.name.contains(searchBar.text!) {
-//                member.display = true
-//            }
-//            member.display = false
-//        }
-//
-//        tableView.reloadData()
-//
-//    }
-//
-//}
+extension MembersViewController: UISearchBarDelegate {
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+
+        filteredList = memberList.filter({ (currentMember) -> Bool in
+            currentMember.contains(query: searchBar.text!)
+        })
+
+        displayList = filteredList
+        tableView.reloadData()
+
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchBar.text?.count == 0 {
+            
+            displayList = memberList
+            tableView.reloadData()
+
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+            
+        }
+
+    }
+
+}
