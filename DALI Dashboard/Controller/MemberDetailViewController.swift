@@ -35,7 +35,6 @@ class MemberDetailViewController: UIViewController {
         memberTermsLabel.text = arrayToString(list: member.termsOn)
         memberProjectsLabel.text = arrayToString(list: member.projects)
         
-        
     }
     
     @IBAction func memberWebsiteButton(_ sender: UIButton) {

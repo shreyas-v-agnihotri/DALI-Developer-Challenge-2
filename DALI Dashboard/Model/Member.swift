@@ -18,10 +18,22 @@ class Member {
     var projects = [String]()
     
     func contains(query: String) -> Bool {
-        return name.contains(query) ||
-               message.contains(query) ||
-               termsOn.contains(query) ||
-               projects.contains(query)
+        
+        let lowercasedQuery = query.lowercased()
+        
+        for term in termsOn {
+            if term.lowercased().contains(lowercasedQuery) {
+                return true
+            }
+        }
+        
+        for project in projects {
+            if project.lowercased().contains(lowercasedQuery) {
+                return true
+            }
+        }
+        
+        return name.lowercased().contains(lowercasedQuery) || message.lowercased().contains(lowercasedQuery)
     }
     
 }

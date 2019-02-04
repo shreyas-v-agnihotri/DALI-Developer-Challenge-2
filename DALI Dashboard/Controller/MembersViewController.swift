@@ -21,7 +21,7 @@ class MembersTableViewCell: UITableViewCell {
     
 }
 
-class MembersViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     let DATA_URL = "https://raw.githubusercontent.com/dali-lab/mappy/gh-pages/members.json"
     let URL_PREFIX = "https://raw.githubusercontent.com/dali-lab/mappy/gh-pages/"
@@ -29,6 +29,8 @@ class MembersViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
     var filteredList = [Member]()
     var displayList = [Member]()
     var selectedMember = Member()
+    var searchBar = UISearchBar()
+    var searchBarButtonItem = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,11 @@ class MembersViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
         tableView.emptyDataSetSource = self as DZNEmptyDataSetSource
         tableView.emptyDataSetDelegate = self as DZNEmptyDataSetDelegate
         
+        searchBar.delegate = self
+        searchBar.searchBarStyle = UISearchBar.Style.minimal
+        searchBar.setShowsCancelButton(true, animated: true)
+        navigationItem.titleView = searchBar
+
         getMemberData(url: DATA_URL)
         
     }
@@ -45,7 +52,7 @@ class MembersViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "No DALI Lab Members to show at this time!"
+        let str = "No DALI Lab members to show at this time!"
         let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
@@ -55,15 +62,12 @@ class MembersViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
     //MARK: TableView Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return displayList.count
-        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "member", for: indexPath) as! MembersTableViewCell
-        
         
         cell.memberNameLabel?.text = displayList[indexPath.row].name
         cell.memberMessageLabel?.text = displayList[indexPath.row].message
@@ -82,17 +86,14 @@ class MembersViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
         Alamofire.request(url).responseJSON { response in
             
             if response.result.isSuccess {
-                
                 let membersJSON: JSON = JSON(response.result.value!)
                 self.populateMembersDisplay(json: membersJSON)
                 //SCLAlertView().showSuccess("Awesome!", subTitle: "All the data loaded up.")
-
             }
             
             else {
                 //Display error
                 SCLAlertView().showError("Oops!", subTitle: "Looks like there was an error fetching the data. Please try again another time.")
-
             }
         }
         
@@ -131,8 +132,40 @@ class MembersViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
         displayList = memberList
         tableView.reloadData()
     }
-
     
+    
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        filteredList = memberList.filter({ (currentMember) -> Bool in
+            currentMember.contains(query: searchBar.text!)
+        })
+        
+        displayList = filteredList
+        tableView.reloadData()
+        if (!displayList.isEmpty) {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
+        }
+        
+        DispatchQueue.main.async {
+            self.view.endEditing(true)
+        }
+        
+    }
+    
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.text = ""
+        displayList = memberList
+        tableView.reloadData()
+        
+        DispatchQueue.main.async {
+            searchBar.resignFirstResponder()
+        }
+    }
+    
+
     
     //MARK: Change Views
     
@@ -150,34 +183,4 @@ class MembersViewController: UITableViewController, DZNEmptyDataSetSource, DZNEm
             memberDetail.member = selectedMember
         }
     }
-}
-
-extension MembersViewController: UISearchBarDelegate {
-
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-
-        filteredList = memberList.filter({ (currentMember) -> Bool in
-            currentMember.contains(query: searchBar.text!)
-        })
-
-        displayList = filteredList
-        tableView.reloadData()
-
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        if searchBar.text?.count == 0 {
-            
-            displayList = memberList
-            tableView.reloadData()
-
-            DispatchQueue.main.async {
-                searchBar.resignFirstResponder()
-            }
-            
-        }
-
-    }
-
 }
