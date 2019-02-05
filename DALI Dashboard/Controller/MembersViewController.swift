@@ -124,6 +124,10 @@ class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmpt
                 newMember.projects.append(project.stringValue)
             }
             
+            for (_, coordinate) in memberData["lat_long"] {
+                newMember.coordinates.append(coordinate.doubleValue)
+            }
+            
             memberList.append(newMember)
         }
         

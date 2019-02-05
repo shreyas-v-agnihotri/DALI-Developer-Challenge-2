@@ -8,6 +8,8 @@
 
 import UIKit
 import SafariServices
+import MapKit
+import Contacts
 
 class MemberDetailViewController: UIViewController {
     
@@ -16,6 +18,7 @@ class MemberDetailViewController: UIViewController {
     @IBOutlet weak var memberTermsLabel: UILabel!
     @IBOutlet weak var memberProjectsLabel: UILabel!
     @IBOutlet weak var memberMessageLabel: UILabel!
+    @IBOutlet weak var memberLocationLabel: UILabel!
     
     var member = Member()
 
@@ -29,8 +32,17 @@ class MemberDetailViewController: UIViewController {
         memberImageView.kf.setImage(with: convertedURL)
         memberImageView.layer.masksToBounds = true
         memberImageView.layer.cornerRadius = memberImageView.bounds.width/2
-        // memberImageView.layer.borderWidth = 7
-        // memberImageView.layer.borderColor = UIColor(red:0.25, green:0.67, blue:0.80, alpha:1.0).cgColor
+        
+        let location = CLLocation(latitude: member.coordinates[0], longitude: member.coordinates[1])
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            if error == nil {
+                self.memberLocationLabel.text = self.formatLocation(placemark: (placemarks![0]))
+            }
+            else {
+                self.memberLocationLabel.text = "Unknown"
+            }
+        }
         
         memberTermsLabel.text = arrayToString(list: member.termsOn)
         memberProjectsLabel.text = arrayToString(list: member.projects)
@@ -61,6 +73,36 @@ class MemberDetailViewController: UIViewController {
         }
         
         return workingString
+    }
+    
+
+    func formatLocation(placemark: CLPlacemark) -> String {
+        
+        
+        if placemark.isoCountryCode == "US" {
+            let city: String = placemark.locality!
+            let state: String = placemark.administrativeArea!
+            return "\(city), \(state)"
+        }
+        else if placemark.locality != nil {
+            let city: String = placemark.locality!
+            let country: String = placemark.country!
+            return "\(city), \(country)"
+        }
+        else if placemark.administrativeArea != nil {
+            let region: String = placemark.administrativeArea!
+            let country: String = placemark.country!
+            return "\(region), \(country)"
+        }
+        else if placemark.country != nil {
+            let country: String = placemark.country!
+            return "\(country)"
+        }
+        else {
+            let name: String = placemark.name!
+            return "\(name)"
+        }
+        
     }
 
 }

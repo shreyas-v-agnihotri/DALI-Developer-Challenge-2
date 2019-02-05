@@ -16,6 +16,7 @@ class Member {
     var message: String = ""
     var termsOn = [String]()
     var projects = [String]()
+    var coordinates = [Double]()
     
     func contains(query: String) -> Bool {
         
