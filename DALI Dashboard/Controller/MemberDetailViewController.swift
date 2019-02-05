@@ -9,7 +9,6 @@
 import UIKit
 import SafariServices
 import MapKit
-import Contacts
 
 class MemberDetailViewController: UIViewController {
     
@@ -27,26 +26,12 @@ class MemberDetailViewController: UIViewController {
 
         memberNameLabel.text = member.name
         memberMessageLabel.text = member.message
-        
-        let convertedURL = URL(string: member.imageURL)
-        memberImageView.kf.setImage(with: convertedURL)
-        memberImageView.layer.masksToBounds = true
-        memberImageView.layer.cornerRadius = memberImageView.bounds.width/2
-        
-        let location = CLLocation(latitude: member.coordinates[0], longitude: member.coordinates[1])
-        let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-            if error == nil {
-                self.memberLocationLabel.text = self.formatLocation(placemark: (placemarks![0]))
-            }
-            else {
-                self.memberLocationLabel.text = "Unknown"
-            }
-        }
-        
         memberTermsLabel.text = arrayToString(list: member.termsOn)
         memberProjectsLabel.text = arrayToString(list: member.projects)
         
+        setImage(imageURL: member.imageURL)
+        setLocation(coordinates: member.coordinates)
+                
     }
     
     @IBAction func memberWebsiteButton(_ sender: UIButton) {
@@ -75,9 +60,34 @@ class MemberDetailViewController: UIViewController {
         return workingString
     }
     
-
-    func formatLocation(placemark: CLPlacemark) -> String {
+    func setImage(imageURL: String) {
         
+        let convertedURL = URL(string: imageURL)
+        memberImageView.kf.setImage(with: convertedURL)
+        memberImageView.layer.masksToBounds = true
+        memberImageView.layer.cornerRadius = memberImageView.bounds.width/2
+        //memberImageView.layer.borderWidth = 7
+        //memberImageView.layer.borderColor = UIColor(red:0.25, green:0.67, blue:0.80, alpha:1.0).cgColor
+        
+    }
+    
+    func setLocation(coordinates: [Double]) {
+        
+        let location = CLLocation(latitude: coordinates[0], longitude: coordinates[1])
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            if error == nil {
+                self.memberLocationLabel.text = self.formatLocation(placemark: (placemarks![0]))
+            }
+            else {
+                self.memberLocationLabel.text = "Unknown"
+            }
+        
+        }
+        
+    }
+    
+    func formatLocation(placemark: CLPlacemark) -> String {
         
         if placemark.isoCountryCode == "US" {
             let city: String = placemark.locality!
@@ -102,7 +112,6 @@ class MemberDetailViewController: UIViewController {
             let name: String = placemark.name!
             return "\(name)"
         }
-        
     }
 
 }
