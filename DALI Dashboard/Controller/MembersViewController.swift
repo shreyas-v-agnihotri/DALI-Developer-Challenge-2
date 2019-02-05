@@ -30,7 +30,6 @@ class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmpt
     var displayList = [Member]()
     var selectedMember = Member()
     var searchBar = UISearchBar()
-    var searchBarButtonItem = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,11 +51,10 @@ class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmpt
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "No DALI Lab members to show at this time!"
+        let str = "No DALI Lab members to show!"
         let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
-    
     
 
     //MARK: TableView Methods

@@ -40,10 +40,8 @@ class MemberDetailViewController: UIViewController {
     @IBAction func memberWebsiteButton(_ sender: UIButton) {
         
         let siteURL = URL(string: member.website)
-        print(member.website)
         let safari = SFSafariViewController(url: siteURL!)
         present(safari, animated: true, completion: nil)
-        //UIApplication.shared.open(siteURL!)
         
     }
     
