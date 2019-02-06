@@ -44,8 +44,8 @@ class MemberDetailViewController: UIViewController {
     
     func arrayToString(list: [String]) -> String {
         var workingString = ""
-        
-        if list.isEmpty {
+                
+        if list.isEmpty || list[0] == "" {
             workingString = "None :("
         }
         else {
@@ -82,9 +82,7 @@ class MemberDetailViewController: UIViewController {
             else {
                 self.memberLocationLabel.text = "Unknown"
             }
-        
         }
-        
     }
     
     func formatLocation(placemark: CLPlacemark) -> String {
@@ -113,5 +111,4 @@ class MemberDetailViewController: UIViewController {
             return "\(name)"
         }
     }
-
 }

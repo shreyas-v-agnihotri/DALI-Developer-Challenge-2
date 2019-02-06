@@ -36,5 +36,4 @@ class Member {
         
         return name.lowercased().contains(lowercasedQuery) || message.lowercased().contains(lowercasedQuery)
     }
-    
 }

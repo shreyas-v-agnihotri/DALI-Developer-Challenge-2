@@ -15,6 +15,8 @@
 		B116772E22065262000657D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B116772C22065262000657D4 /* LaunchScreen.storyboard */; };
 		B116773F22069F32000657D4 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = B116773E22069F32000657D4 /* Member.swift */; };
 		B1329E1E2206B31B00C24A07 /* MemberDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1329E1D2206B31B00C24A07 /* MemberDetailViewController.swift */; };
+		B1329E20220A37BB00C24A07 /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1329E1F220A37BB00C24A07 /* LandingPageViewController.swift */; };
+		B18DCAF6220A59850056E3CC /* MemberMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18DCAF5220A59850056E3CC /* MemberMapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +30,9 @@
 		B116772F22065262000657D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B116773E22069F32000657D4 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		B1329E1D2206B31B00C24A07 /* MemberDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetailViewController.swift; sourceTree = "<group>"; };
+		B1329E1F220A37BB00C24A07 /* LandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
 		B15641CF289A98ABCEA19A4D /* Pods_DALI_Dashboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DALI_Dashboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B18DCAF5220A59850056E3CC /* MemberMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberMapViewController.swift; sourceTree = "<group>"; };
 		B1E5EB31A026B913275AE907 /* Pods-DALI Dashboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DALI Dashboard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DALI Dashboard/Pods-DALI Dashboard.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +109,8 @@
 				B11677252206525E000657D4 /* MembersViewController.swift */,
 				B11677232206525E000657D4 /* AppDelegate.swift */,
 				B1329E1D2206B31B00C24A07 /* MemberDetailViewController.swift */,
+				B1329E1F220A37BB00C24A07 /* LandingPageViewController.swift */,
+				B18DCAF5220A59850056E3CC /* MemberMapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -246,6 +252,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1329E20220A37BB00C24A07 /* LandingPageViewController.swift in Sources */,
+				B18DCAF6220A59850056E3CC /* MemberMapViewController.swift in Sources */,
 				B11677262206525E000657D4 /* MembersViewController.swift in Sources */,
 				B116773F22069F32000657D4 /* Member.swift in Sources */,
 				B1329E1E2206B31B00C24A07 /* MemberDetailViewController.swift in Sources */,

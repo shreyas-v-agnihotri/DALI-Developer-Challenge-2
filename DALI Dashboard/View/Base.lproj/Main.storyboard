@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Member Detail View Controller-->
+        <!--Member Detail-->
         <scene sceneID="ORg-nb-fIM">
             <objects>
-                <viewController id="AJx-UD-vV7" customClass="MemberDetailViewController" customModule="DALI_Dashboard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Member Detail" id="AJx-UD-vV7" customClass="MemberDetailViewController" customModule="DALI_Dashboard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kRd-2H-cwb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -55,7 +55,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fC1-KQ-Zt4">
-                                <rect key="frame" x="20" y="495" width="374" height="36"/>
+                                <rect key="frame" x="20" y="498" width="374" height="36"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SwE-v9-X92">
                                         <rect key="frame" x="0.0" y="0.0" width="182" height="36"/>
@@ -74,7 +74,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BOZ-gq-gmZ">
-                                <rect key="frame" x="20" y="546" width="374" height="30"/>
+                                <rect key="frame" x="20" y="549" width="374" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms On" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWO-QP-gRd">
                                         <rect key="frame" x="0.0" y="0.0" width="182" height="30"/>
@@ -91,7 +91,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vyZ-V3-VZZ">
-                                <rect key="frame" x="20" y="581" width="374" height="24"/>
+                                <rect key="frame" x="20" y="584" width="374" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DC9-52-N9U">
                                         <rect key="frame" x="0.0" y="0.0" width="182" height="24"/>
@@ -118,7 +118,7 @@
                             <constraint firstItem="mGC-2g-eBK" firstAttribute="trailing" secondItem="hsa-jh-PAO" secondAttribute="trailing" constant="20" id="LXg-kd-bw3"/>
                             <constraint firstItem="mGC-2g-eBK" firstAttribute="trailing" secondItem="77o-JJ-zWc" secondAttribute="trailing" constant="20" id="MJZ-ZN-DAB"/>
                             <constraint firstItem="vyZ-V3-VZZ" firstAttribute="top" secondItem="BOZ-gq-gmZ" secondAttribute="bottom" constant="5" id="SIJ-sy-IZg"/>
-                            <constraint firstItem="fC1-KQ-Zt4" firstAttribute="top" secondItem="hsa-jh-PAO" secondAttribute="bottom" id="YcW-rl-1rG"/>
+                            <constraint firstItem="fC1-KQ-Zt4" firstAttribute="top" secondItem="hsa-jh-PAO" secondAttribute="bottom" constant="3" id="YcW-rl-1rG"/>
                             <constraint firstItem="fef-Su-hEF" firstAttribute="top" secondItem="Y7l-EG-zdc" secondAttribute="bottom" constant="20" id="ZyQ-ic-lPI"/>
                             <constraint firstItem="vyZ-V3-VZZ" firstAttribute="leading" secondItem="mGC-2g-eBK" secondAttribute="leading" constant="20" id="arI-Fh-9Kq"/>
                             <constraint firstItem="hsa-jh-PAO" firstAttribute="leading" secondItem="mGC-2g-eBK" secondAttribute="leading" constant="20" id="az1-9z-7AH"/>
@@ -144,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fDq-44-6Ep" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1728.8" y="132.68365817091455"/>
+            <point key="canvasLocation" x="1983" y="161"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Nry-1u-p6Q">
@@ -160,12 +160,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="FXh-oo-k41" kind="relationship" relationship="rootViewController" id="XR8-Af-rqn"/>
+                        <segue destination="Ukz-9h-fjb" kind="relationship" relationship="rootViewController" id="M1e-NC-YFP"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pfb-4c-URx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-79.200000000000003" y="132.68365817091455"/>
+            <point key="canvasLocation" x="-583" y="161"/>
         </scene>
         <!--Members-->
         <scene sceneID="Hbs-ad-uD5">
@@ -234,7 +234,113 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eIR-cj-dFr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="837.60000000000002" y="132.68365817091455"/>
+            <point key="canvasLocation" x="1117" y="161"/>
+        </scene>
+        <!--Member Map-->
+        <scene sceneID="dIb-hu-9Vq">
+            <objects>
+                <viewController title="Member Map" id="Vao-Uq-88r" customClass="MemberMapViewController" customModule="DALI_Dashboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hul-PZ-f8Y">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZKk-jz-Z0n">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZKk-jz-Z0n" firstAttribute="top" secondItem="gvB-uK-z4O" secondAttribute="top" id="6HD-iY-TiX"/>
+                            <constraint firstAttribute="bottom" secondItem="ZKk-jz-Z0n" secondAttribute="bottom" id="C6c-LM-QbR"/>
+                            <constraint firstItem="ZKk-jz-Z0n" firstAttribute="leading" secondItem="gvB-uK-z4O" secondAttribute="leading" id="G7y-2s-qpG"/>
+                            <constraint firstItem="gvB-uK-z4O" firstAttribute="trailing" secondItem="ZKk-jz-Z0n" secondAttribute="trailing" id="U7l-eF-Oh7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gvB-uK-z4O"/>
+                    </view>
+                    <connections>
+                        <outlet property="memberMap" destination="ZKk-jz-Z0n" id="9Js-ls-1as"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gKf-nl-JXj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1116" y="916"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="1gD-O5-Skw">
+            <objects>
+                <viewController id="Ukz-9h-fjb" customClass="LandingPageViewController" customModule="DALI_Dashboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wSj-Jt-yeQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DALI logo" translatesAutoresizingMaskIntoConstraints="NO" id="MS6-4A-uEi">
+                                <rect key="frame" x="50" y="88" width="314" height="408"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SyK-aT-opP">
+                                <rect key="frame" x="0.0" y="496" width="414" height="400"/>
+                                <color key="backgroundColor" red="0.24705882352941178" green="0.66666666666666663" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="Uph-we-r3y"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="By9-B8-cV0">
+                                <rect key="frame" x="110" y="596" width="194" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="9A0-RS-e5d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
+                                <state key="normal" title="Members">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="FXh-oo-k41" kind="show" identifier="goToMembers" id="IGz-gY-App"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nv9-tw-aNg">
+                                <rect key="frame" x="110" y="736" width="194" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="OYd-Qc-FjU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
+                                <state key="normal" title="Map">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Vao-Uq-88r" kind="show" identifier="goToMap" id="bnj-fY-s5Q"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="SyK-aT-opP" secondAttribute="bottom" id="DkT-qn-fcr"/>
+                            <constraint firstItem="Nv9-tw-aNg" firstAttribute="leading" secondItem="Lx3-Ez-2en" secondAttribute="leading" constant="110" id="Laj-Ia-ywe"/>
+                            <constraint firstItem="Lx3-Ez-2en" firstAttribute="trailing" secondItem="By9-B8-cV0" secondAttribute="trailing" constant="110" id="OiS-pb-XrO"/>
+                            <constraint firstItem="Lx3-Ez-2en" firstAttribute="trailing" secondItem="MS6-4A-uEi" secondAttribute="trailing" constant="50" id="RFY-sz-4Yy"/>
+                            <constraint firstItem="Lx3-Ez-2en" firstAttribute="trailing" secondItem="Nv9-tw-aNg" secondAttribute="trailing" constant="110" id="Skq-7B-Umy"/>
+                            <constraint firstItem="MS6-4A-uEi" firstAttribute="leading" secondItem="Lx3-Ez-2en" secondAttribute="leading" constant="50" id="VVz-tv-9mn"/>
+                            <constraint firstItem="MS6-4A-uEi" firstAttribute="top" secondItem="Lx3-Ez-2en" secondAttribute="top" id="WtR-am-hJg"/>
+                            <constraint firstItem="By9-B8-cV0" firstAttribute="top" secondItem="MS6-4A-uEi" secondAttribute="bottom" constant="100" id="Z20-8z-SCZ"/>
+                            <constraint firstAttribute="bottom" secondItem="Nv9-tw-aNg" secondAttribute="bottom" constant="100" id="a8N-hd-qj1"/>
+                            <constraint firstItem="By9-B8-cV0" firstAttribute="leading" secondItem="Lx3-Ez-2en" secondAttribute="leading" constant="110" id="aVu-Ew-V4g"/>
+                            <constraint firstItem="SyK-aT-opP" firstAttribute="top" secondItem="MS6-4A-uEi" secondAttribute="bottom" id="f0M-Fv-2Q9"/>
+                            <constraint firstItem="SyK-aT-opP" firstAttribute="leading" secondItem="Lx3-Ez-2en" secondAttribute="leading" id="oUA-et-4mZ"/>
+                            <constraint firstItem="SyK-aT-opP" firstAttribute="trailing" secondItem="Lx3-Ez-2en" secondAttribute="trailing" id="s35-h7-DwU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Lx3-Ez-2en"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Home" id="rVY-v8-YXn"/>
+                    <connections>
+                        <outlet property="mapButton" destination="Nv9-tw-aNg" id="oeG-FE-Ve5"/>
+                        <outlet property="membersButton" destination="By9-B8-cV0" id="h50-WN-rb3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZH2-oc-stb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="263.768115942029" y="160.71428571428569"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="DALI logo" width="242.5" height="102"/>
+    </resources>
 </document>

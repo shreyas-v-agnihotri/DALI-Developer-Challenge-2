@@ -7,11 +7,8 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 import Kingfisher
 import DZNEmptyDataSet
-import SCLAlertView
 
 class MembersTableViewCell: UITableViewCell {
     
@@ -22,9 +19,7 @@ class MembersTableViewCell: UITableViewCell {
 }
 
 class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
-    
-    let DATA_URL = "https://raw.githubusercontent.com/dali-lab/mappy/gh-pages/members.json"
-    let URL_PREFIX = "https://raw.githubusercontent.com/dali-lab/mappy/gh-pages/"
+
     var memberList = [Member]()
     var filteredList = [Member]()
     var displayList = [Member]()
@@ -34,6 +29,8 @@ class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmpt
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        displayList = memberList
+        
         tableView.emptyDataSetSource = self as DZNEmptyDataSetSource
         tableView.emptyDataSetDelegate = self as DZNEmptyDataSetDelegate
         
@@ -41,8 +38,6 @@ class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmpt
         searchBar.searchBarStyle = UISearchBar.Style.minimal
         searchBar.setShowsCancelButton(true, animated: true)
         navigationItem.titleView = searchBar
-
-        getMemberData(url: DATA_URL)
         
     }
     
@@ -75,67 +70,6 @@ class MembersViewController: UITableViewController, UISearchBarDelegate, DZNEmpt
         
         return cell
     }
-    
-
-    //MARK: Networking
-    
-    func getMemberData(url: String) {
-        
-        Alamofire.request(url).responseJSON { response in
-            
-            if response.result.isSuccess {
-                let membersJSON: JSON = JSON(response.result.value!)
-                self.populateMembersDisplay(json: membersJSON)
-                //SCLAlertView().showSuccess("Awesome!", subTitle: "All the data loaded up.")
-            }
-            
-            else {
-                //Display error
-                SCLAlertView().showError("Oops!", subTitle: "Looks like there was an error fetching the data. Please try again another time.")
-            }
-        }
-        
-    }
-    
-    func populateMembersDisplay(json: JSON) {
-        
-        for (_, memberData) in json {
-            let newMember = Member()
-            
-            newMember.name = memberData["name"].stringValue
-            newMember.message = memberData["message"].stringValue
-            
-            let noSpaceImageURL = memberData["iconUrl"].stringValue.replacingOccurrences(of: " ", with: "%20")
-            newMember.imageURL = "\(URL_PREFIX)\(noSpaceImageURL)"
-            
-            let noSpaceWebsiteURL = memberData["url"].stringValue.replacingOccurrences(of: " ", with: "%20")
-            if (!noSpaceWebsiteURL.hasPrefix("//")) {
-                newMember.website = "\(URL_PREFIX)\(noSpaceWebsiteURL)"
-            }
-            else {
-                newMember.website = "http:\(noSpaceWebsiteURL)"
-            }
-            
-            for (_, term) in memberData["terms_on"] {
-                newMember.termsOn.append(term.stringValue)
-            }
-            
-            for (_, project) in memberData["project"] {
-                newMember.projects.append(project.stringValue)
-            }
-            
-            for (_, coordinate) in memberData["lat_long"] {
-                newMember.coordinates.append(coordinate.doubleValue)
-            }
-            
-            memberList.append(newMember)
-        }
-        
-        displayList = memberList
-        tableView.reloadData()
-    }
-    
-    
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
