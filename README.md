@@ -23,4 +23,4 @@ My goal was to create a dashboard of DALI Lab members with information about the
 * Alert notification for failure to load data
 
 ## Languages and Skills Used
-This app was built in Xcode using Swift. I only recently began teaching myself Swift, so I'm very proud that I was able to create a functioning multi-view application that parses and displays internet data.
+This app was built in Xcode using Swift. I only recently began teaching myself Swift, so I'm very proud that I was able to create a functioning multi-view application that parses and displays internet data. I made every attempt to follow Apple's preferred MVC design pattern as well as adopt good coding style and technique.
