@@ -2,14 +2,14 @@ PODS:
   - Alamofire (4.8.0)
   - DZNEmptyDataSet (1.8.1)
   - Kingfisher (4.10.1)
-  - SCLAlertView (0.8)
+  - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
   - Alamofire
   - DZNEmptyDataSet
   - Kingfisher
-  - SCLAlertView
+  - SVProgressHUD
   - SwiftyJSON
 
 SPEC REPOS:
@@ -17,16 +17,16 @@ SPEC REPOS:
     - Alamofire
     - DZNEmptyDataSet
     - Kingfisher
-    - SCLAlertView
+    - SVProgressHUD
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
-  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 4981252440a96086ab91040c28ebb16a684a5a8b
+PODFILE CHECKSUM: 6381c9aa22c2d413ef8836ec7dd24dc45a8e2cae
 
 COCOAPODS: 1.5.3

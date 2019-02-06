@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E4C27E7757A66207908D3C5712D7BBB0"
+               BlueprintIdentifier = "AD9BC663F5BB185AECB5C91F36A22801"
                BuildableName = "Pods_DALI_Dashboard.framework"
                BlueprintName = "Pods-DALI Dashboard"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E4C27E7757A66207908D3C5712D7BBB0"
+            BlueprintIdentifier = "AD9BC663F5BB185AECB5C91F36A22801"
             BuildableName = "Pods_DALI_Dashboard.framework"
             BlueprintName = "Pods-DALI Dashboard"
             ReferencedContainer = "container:Pods.xcodeproj">

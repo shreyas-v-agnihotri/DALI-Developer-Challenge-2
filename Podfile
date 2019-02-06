@@ -10,5 +10,5 @@ target 'DALI Dashboard' do
     pod 'SwiftyJSON'
     pod 'Kingfisher'
     pod 'DZNEmptyDataSet'
-    pod 'SCLAlertView'
+    pod 'SVProgressHUD'
 end

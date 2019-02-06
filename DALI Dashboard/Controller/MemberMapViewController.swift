@@ -8,25 +8,35 @@
 
 import UIKit
 import MapKit
+import SVProgressHUD
 
 class MemberMapViewController: UIViewController {
 
-    @IBOutlet weak var memberMap: MKMapView!
+    // Global variables
+    @IBOutlet weak var memberMap: MKMapView!    // Interactive Apple map view
+    
     var memberList = [Member]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // Displays loading bar until map has been populated
+        SVProgressHUD.show()
         populateMap(members: memberList)
+        SVProgressHUD.dismiss()
     }
     
-
+    // Handles memory overload
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    // Plots marker on map for hometown of each member in passed list
     func populateMap(members: [Member]) {
         
         for member in members {
             let annotation = MKPointAnnotation()
-            annotation.title = member.name
+            annotation.title = member.name          // Prints member name under each marker
             annotation.coordinate = CLLocationCoordinate2DMake(member.coordinates[0], member.coordinates[1])
             memberMap.addAnnotation(annotation)
         }
