@@ -4,6 +4,8 @@ An iOS app created for my application to Dartmouth's DALI Lab.
 ## Demo
 [Click here to view the app in an iOS simulator](https://appetize.io/app/vpuyv5kr8ptvxu4fkmvykx04jm?device=iphonex&scale=75&orientation=portrait&osVersion=12.1&deviceColor=black)
 
+Note: The simulator may not operate properly in some browsers or on mobile.
+
 ## The Challenge
 My goal was to create a dashboard of DALI Lab members with information about their backgrounds and projects.
 
